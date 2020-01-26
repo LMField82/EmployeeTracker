@@ -10,6 +10,11 @@ const connection = mysql.createConnection({
     database: "employeeTracker_db"
 });
 
+connection.connect(function(err) {
+    if (err) throw err;
+    mainMenu();
+});
+
 const mainMenu = () => {
     inquirer.prompt ([
 
@@ -49,4 +54,37 @@ const mainMenu = () => {
             break;
       }
   });
+}
+
+const viewEmployees = () => {
+    console.log("\nViewing all Employees\n");
+    connection.query("SELECT * FROM employee", function(err, res) {
+        if (err) throw err;
+
+        console.log(res);
+        console.log("\n---------------------\n");
+        mainMenu();
+    });
+}
+
+const viewDepartments = () => {
+    console.log("\nViewing all Departments\n");
+    connection.query("SELECT * FROM department", function(err, res) {
+        if (err) throw err;
+
+        console.log(res);
+        console.log("\n---------------------\n");
+        mainMenu();
+    });
+}
+
+const viewRoles = () => {
+    console.log("\nViewing all Roles\n");
+    connection.query("SELECT * FROM rol", function(err, res) {
+        if (err) throw err;
+
+        console.log(res);
+        console.log("\n---------------------\n");
+        mainMenu();
+    });
 }
