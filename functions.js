@@ -137,7 +137,7 @@ const addEmployee = () => {
 const deleteEmployee = () => {
     inquirer.prompt ([
         {
-            name: "removeId",
+            name: "id",
             type: "input",
             message: "What is the id of the employee you'd like to remove?"
         }
@@ -145,7 +145,7 @@ const deleteEmployee = () => {
         connection.query(
             "DELETE FROM employee WHERE id = ?",
             [{
-                id : answer.removeId
+                id : answer.id
             }],
             function(err, res) {
                 if (err) throw err;
