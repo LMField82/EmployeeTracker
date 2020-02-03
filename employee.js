@@ -280,14 +280,14 @@ const removeById = (data) => {
     }
 
 
-    const updateEmployees = (data) => {
-        connection.query(`UPDATE employee SET rol_id = ${data.rolId} WHERE id = ${data.empId}`, 
-        function(err, res) {
-            if (err)
-            throw err;
-        });
-        mainMenu();
-    }
+    // const updateEmployees = (data) => {
+    //     connection.query(`UPDATE employee SET rol_id = ${data.rolId} WHERE id = ${data.empId}`, 
+    //     function(err, res) {
+    //         if (err)
+    //         throw err;
+    //     });
+    //     mainMenu();
+    // }
 
 
 
@@ -302,23 +302,18 @@ const deleteDepartment = () => {
                 choices: showDepts
             }          
         ]).then(function(answer) {
-            console.log("working here?");
-            
-            connection.query("DELETE FROM department WHERE ?", function(err, res) {
-            [{
-                name: answer.name
-            }], 
-            function(err, res) {
-                if (err) throw err;
-                console.table(res);
-                console.log("\nThe department was deleted.\n")
-                mainMenu();
-            }
-        });
+            //console.log("working here?");
+            removeByDeptId(answer);
     });
 }
 
     )}
+
+
+const removeByDeptId = (data) => {
+
+    
+}
 
 const deleteRole = () => {
     connection.query("SELECT title FROM rol", function(err, res) {
@@ -326,7 +321,7 @@ const deleteRole = () => {
 
         inquirer.prompt ([
             {
-                name: "title",
+                name: "rolId",
                 type: "list",
                 message: "Select the role you'd like to delete.",
                 choices: showroles
@@ -337,6 +332,19 @@ const deleteRole = () => {
     });
 });
 
+}
+
+const removeByRoleId = (data) => {
+    connection.query("DELETE FROM rol WHERE ?",
+    [{
+        id: data.rolId
+    }],
+    function(err, res) {
+        if (err) throw err;
+        //console.table(res);
+        console.log("The role was deleted.");
+        mainMenu();
+    });
 }
 
 
