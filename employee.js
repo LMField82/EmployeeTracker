@@ -296,7 +296,7 @@ const deleteDepartment = () => {
         if(err) throw err;
         inquirer.prompt([
             {
-                name: "name",
+                name: "deptId",
                 type: "list",
                 message: "Which department would you like to delete?",
                 choices: showDepts
@@ -311,9 +311,20 @@ const deleteDepartment = () => {
 
 
 const removeByDeptId = (data) => {
-
     
-}
+        connection.query("DELETE FROM department WHERE ?",
+        [{
+            id: data.deptId
+        }],
+        function(err, res) {
+            if (err) throw err;
+            //console.table(res);
+            console.log("The department was deleted.");
+            mainMenu();
+        });
+    }
+
+
 
 const deleteRole = () => {
     connection.query("SELECT title FROM rol", function(err, res) {
