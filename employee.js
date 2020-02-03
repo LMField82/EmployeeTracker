@@ -64,9 +64,6 @@ const mainMenu = () => {
         case "View Roles":
             viewRoles();
             break;
-        case "View Managers":
-            viewManagers();
-            break;
         case "Add Employee":
             addEmployee();
             break;
@@ -99,7 +96,7 @@ const mainMenu = () => {
 
 const viewEmployees = () => {
     console.log("\nViewing all Employees\n");
-    connection.query("SELECT * FROM employee", function(err, res) {
+    connection.query("SELECT * FROM employee LEFT JOIN rol ON employee.rol_id = rol.id", function(err, res) {
         if (err) {
             console.log("Error!!!!!", err.message)
             throw err};
