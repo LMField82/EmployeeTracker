@@ -129,18 +129,18 @@ const viewRoles = () => {
     });
 }
 
-const viewManagers = () => {
-    console.log("\nViewing all Managers\n");
-    connection.query("SELECT * FROM managers", function(err, res) {
-        if (err) {
-            console.log("Error!!!!!", err.message)
-            throw err};
+// const viewManagers = () => {
+//     console.log("\nViewing all Managers\n");
+//     connection.query("SELECT * FROM managers", function(err, res) {
+//         if (err) {
+//             console.log("Error!!!!!", err.message)
+//             throw err};
 
-        console.table(res);
-        console.log("\n---------------------\n");
-        mainMenu();
-    });
-}
+//         console.table(res);
+//         console.log("\n---------------------\n");
+//         mainMenu();
+//     });
+// }
 
 const addRole = () => {
     inquirer.prompt([
