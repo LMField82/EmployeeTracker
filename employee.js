@@ -96,7 +96,7 @@ const mainMenu = () => {
 
 const viewEmployees = () => {
     console.log("\nViewing all Employees\n");
-    connection.query("SELECT * FROM employee LEFT JOIN rol ON employee.rol_id = rol.id", function(err, res) {
+    connection.query("SELECT * FROM employee LEFT JOIN rol ON employee.role_id = rol.id", function(err, res) {
         if (err) {
             console.log("Error!!!!!", err.message)
             throw err};
@@ -215,7 +215,7 @@ const addEmployee = () => {
             message: "Whatis the last name of the new employee?"
         },
         {
-            name: "rol_id",
+            name: "role_id",
             type: "input",
             message: "What is the role id of the new employee?"
         },
@@ -230,7 +230,7 @@ const addEmployee = () => {
             {
                 first_name: answer.first_name,
                 last_name: answer.last_name,
-                rol_id: answer.rol_id,
+                role_id: answer.role_id,
                 manager_id: answer.manager_id
             },
             function(err) {
@@ -385,7 +385,7 @@ const updateEmpRole = () => {
 }
 
 const updateRole = (data) => {
-    connection.query(`UPDATE employee SET rol_id = ${data.rolId} WHERE id = ${data.empId}`, 
+    connection.query(`UPDATE employee SET role_id = ${data.rolId} WHERE id = ${data.empId}`, 
     function(err, res) {
         if (err)
         throw err;
